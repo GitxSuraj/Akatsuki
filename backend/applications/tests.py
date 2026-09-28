@@ -15,6 +15,10 @@ class PublicApiTests(TestCase):
   CoreMember.objects.create(name='Hidden',position='Lead',domain='SOFTWARE',is_active=False)
   response=APIClient().get('/api/members/')
   self.assertEqual(response.status_code,200); self.assertEqual([x['name'] for x in response.json()],['Visible'])
+ def test_member_api_keeps_email_addresses_private(self):
+  CoreMember.objects.create(name='Private Contact',position='Lead',domain='SOFTWARE',email='member@example.edu',personal_email='private@example.com')
+  response=APIClient().get('/api/members/')
+  self.assertEqual(response.status_code,200); self.assertNotIn('email',response.json()[0]); self.assertNotIn('personal_email',response.json()[0])
  def test_private_applications_are_not_publicly_listed(self):
   response=APIClient().get('/api/applications/')
   self.assertIn(response.status_code,(401,403))

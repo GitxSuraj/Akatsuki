@@ -30,3 +30,8 @@
 @media(max-width:800px){.hero-logo{right:-12%;width:70vw;height:61vh;opacity:.58}}
 @media(max-width:560px){.brand-mark{width:33px;height:33px}.hero-logo{right:-28%;width:88vw;height:56vh;opacity:.42}.brand-loader>img{width:190px}}
 @media(prefers-reduced-motion:reduce){.scroll-progress{display:none}.hero-logo,.member-card{will-change:auto}}
+.hero-wordmark-heading{width:min(64vw,700px);max-width:100%;font-size:0;line-height:0;letter-spacing:normal;margin:31px 0 23px}
+.hero-wordmark-heading img{display:block;width:100%;height:auto;mix-blend-mode:screen;filter:drop-shadow(0 0 22px #d7d4d411)}
+.hero-logo{filter:brightness(1.13) saturate(1.13) drop-shadow(0 0 62px #c3002e45)}
+@media(max-width:800px){.hero-wordmark-heading{width:min(80vw,590px)}}
+@media(max-width:560px){.hero-wordmark-heading{width:min(86vw,480px);margin:25px 0 18px}}

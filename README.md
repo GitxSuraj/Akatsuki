@@ -64,6 +64,14 @@ Deploy the frontend to Vercel with `VITE_API_URL` set to the backend API origin.
 - SMTP issues: inspect Email Logs and check provider credentials; local console mode prints mail to the server terminal.
 - PostgreSQL connection error: verify `DATABASE_URL`; unset it to use SQLite locally.
 
-## Brand asset
+## Brand assets
 
-Place the official logo at rontend/public/akatsuki.png. The navbar and footer display it automatically and fall back to the AKATSUKI monogram if the image is absent. The logo attachment was not present in the provided workspace, so this project currently uses that fallback.
+The supplied AKATSUKI artwork is optimized into a full logo, crest crop, and logo wordmark under `frontend/public/`. The actual letterforms are used for the home hero wordmark; other headings use Space Grotesk.
+
+## Admin and team content
+
+Create an administrator with `python manage.py createsuperuser`, then open `/admin/`. Add or edit profiles under **Core members**: enter the name, position, domain, social profile URLs, optional photo and bio, then set Active and display order. Member email fields are private and are omitted from the public API. The included `python manage.py seed_data` command adds the supplied Suraj Kumar and Devesh Kumar profiles and official contact email; rerunning it does not overwrite profiles already edited in Admin.
+
+## Email delivery and applicant verification
+
+The project sends the congratulations email when an administrator promotes an accepted or shortlisted applicant. It does not currently send an applicant email-verification link or OTP. Email delivery uses Django SMTP settings from environment variables. For Gmail, use an App Password generated for the club Gmail account (with two-step verification enabled), never the normal Gmail password. Put it in `EMAIL_HOST_PASSWORD` in local `.env` or the deployment secret store. Do not commit credentials. Until SMTP is configured, Django uses its console backend in development.
