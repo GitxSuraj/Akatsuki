@@ -63,3 +63,7 @@ Deploy the frontend to Vercel with `VITE_API_URL` set to the backend API origin.
 - Empty public content: add active members, published events, visible gallery images, and one SiteSettings record in Admin.
 - SMTP issues: inspect Email Logs and check provider credentials; local console mode prints mail to the server terminal.
 - PostgreSQL connection error: verify `DATABASE_URL`; unset it to use SQLite locally.
+
+## Brand asset
+
+Place the official logo at rontend/public/akatsuki.png. The navbar and footer display it automatically and fall back to the AKATSUKI monogram if the image is absent. The logo attachment was not present in the provided workspace, so this project currently uses that fallback.
