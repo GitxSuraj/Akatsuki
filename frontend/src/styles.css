@@ -44,3 +44,10 @@
 .hero-ring:after{border-color:#d20b3138}
 @media(max-width:800px){.hero-wordmark-heading{font-size:clamp(48px,10vw,78px)}.hero-logo{right:2%;width:48vw;height:58vh;opacity:.88}}
 @media(max-width:560px){.hero-wordmark-heading{font-size:clamp(44px,11vw,62px);margin:25px 0 18px;letter-spacing:.015em}.hero-logo{right:0;width:54vw;height:48vh;opacity:.72}}
+
+/* Keep the hero copy in its own lane beside the full logo artwork. */
+.hero-content{max-width:620px;margin-left:-3vw}
+.hero h1.hero-wordmark-heading{width:100%;font-size:clamp(48px,6vw,96px);line-height:1.02;letter-spacing:.015em;white-space:nowrap;margin:30px 0 24px}
+@media(max-width:1100px){.hero-content{max-width:540px;margin-left:-2vw}.hero h1.hero-wordmark-heading{font-size:clamp(46px,5.6vw,72px)}}
+@media(max-width:800px){.hero-content{max-width:min(68vw,520px);margin-left:0}.hero h1.hero-wordmark-heading{font-size:clamp(42px,8vw,64px);white-space:normal}}
+@media(max-width:560px){.hero-content{max-width:100%}.hero h1.hero-wordmark-heading{font-size:clamp(39px,10vw,52px);white-space:nowrap}}
