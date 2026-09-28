@@ -35,3 +35,12 @@
 .hero-logo{filter:brightness(1.13) saturate(1.13) drop-shadow(0 0 62px #c3002e45)}
 @media(max-width:800px){.hero-wordmark-heading{width:min(80vw,590px)}}
 @media(max-width:560px){.hero-wordmark-heading{width:min(86vw,480px);margin:25px 0 18px}}
+
+/* Clear, complete hero branding: typed wordmark plus the full artwork. */
+.hero-wordmark-heading{width:auto;font-family:'Orbitron','Space Grotesk',sans-serif;font-size:clamp(52px,8.5vw,112px);line-height:.98;letter-spacing:.025em;font-weight:700;margin:30px 0 24px;text-shadow:0 0 24px #d0062a2b}
+.hero-logo{right:4%;width:min(42vw,520px);height:min(78vh,650px);object-fit:contain;opacity:1;filter:drop-shadow(0 0 8px #ec143b88) drop-shadow(0 0 30px #c3002e60) drop-shadow(0 0 64px #c3002e35)}
+.hero-ring{border-color:#d20b3152;box-shadow:0 0 26px #d20b3124,inset 0 0 25px #d20b3118}
+.hero-ring:before{border-color:#d20b3140}
+.hero-ring:after{border-color:#d20b3138}
+@media(max-width:800px){.hero-wordmark-heading{font-size:clamp(48px,10vw,78px)}.hero-logo{right:2%;width:48vw;height:58vh;opacity:.88}}
+@media(max-width:560px){.hero-wordmark-heading{font-size:clamp(44px,11vw,62px);margin:25px 0 18px;letter-spacing:.015em}.hero-logo{right:0;width:54vw;height:48vh;opacity:.72}}
