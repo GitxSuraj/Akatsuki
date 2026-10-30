@@ -30,6 +30,17 @@ DATABASES={'default':dj_database_url.config(default=f"sqlite:///{BASE_DIR/'db.sq
 AUTH_PASSWORD_VALIDATORS=[]
 LANGUAGE_CODE='en-us'; TIME_ZONE='Asia/Kolkata'; USE_I18N=True; USE_TZ=True
 STATIC_URL='static/'; STATIC_ROOT=BASE_DIR/'staticfiles'; MEDIA_URL='/media/'; MEDIA_ROOT=BASE_DIR/'media'
+if ON_VERCEL:
+    # Vercel's deployed filesystem is read-only; member photos must use durable object storage.
+    STORAGES = {
+        'default': {'BACKEND': 'core.storage.CloudinaryMemberStorage'},
+        'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'},
+    }
+else:
+    STORAGES = {
+        'default': {'BACKEND': 'django.core.files.storage.FileSystemStorage'},
+        'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'},
+    }
 DEFAULT_AUTO_FIELD='django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS=[x.strip() for x in os.getenv('CORS_ALLOWED_ORIGINS','http://localhost:5173,http://127.0.0.1:5173,http://localhost:5174,http://127.0.0.1:5174').split(',') if x.strip()]
 CSRF_TRUSTED_ORIGINS=CORS_ALLOWED_ORIGINS
