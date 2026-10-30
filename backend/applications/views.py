@@ -8,7 +8,7 @@ from django.utils import timezone
 from .models import Application
 
 class ApplicationWriteSerializer(serializers.ModelSerializer):
-    resume = serializers.FileField(use_url=False)
+    resume = serializers.FileField(use_url=False, required=False)
     class Meta:
         model = Application
         fields = ('full_name','email','phone','roll_number','department','year','domain','skills','experience','github','linkedin','why_akatsuki','resume','consent')
