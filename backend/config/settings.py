@@ -15,6 +15,8 @@ ON_VERCEL = bool(os.getenv('VERCEL'))
 DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true' and not ON_VERCEL
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY') or (get_random_secret_key() if DEBUG else '')
 ALLOWED_HOSTS = [x.strip() for x in os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1,akatsuki-rho.vercel.app').split(',') if x.strip()]
+if 'akatsukibots.vercel.app' not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append('akatsukibots.vercel.app')
 for vercel_host_var in ('VERCEL_URL', 'VERCEL_PROJECT_PRODUCTION_URL'):
     vercel_host = os.getenv(vercel_host_var, '').strip().split(':', 1)[0]
     if vercel_host and vercel_host not in ALLOWED_HOSTS:
