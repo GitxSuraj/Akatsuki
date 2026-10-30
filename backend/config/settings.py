@@ -10,9 +10,15 @@ if ENV_FILE.exists():
         if line and not line.startswith('#') and '=' in line:
             key, value = line.split('=', 1)
             os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY') or (get_random_secret_key() if os.getenv('DJANGO_DEBUG', 'True').lower() == 'true' else '')
-DEBUG = os.getenv('DJANGO_DEBUG', 'True').lower() == 'true'
+ON_VERCEL = bool(os.getenv('VERCEL'))
+# Vercel is a production environment: never expose Django's debug traceback there.
+DEBUG = os.getenv('DJANGO_DEBUG', 'True').lower() == 'true' and not ON_VERCEL
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY') or (get_random_secret_key() if DEBUG else '')
 ALLOWED_HOSTS = [x.strip() for x in os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',') if x.strip()]
+for vercel_host_var in ('VERCEL_URL', 'VERCEL_PROJECT_PRODUCTION_URL'):
+    vercel_host = os.getenv(vercel_host_var, '').strip().split(':', 1)[0]
+    if vercel_host and vercel_host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(vercel_host)
 INSTALLED_APPS = ['django.contrib.admin','django.contrib.auth','django.contrib.contenttypes','django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles','rest_framework','corsheaders','core','members','events','gallery','applications']
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware','whitenoise.middleware.WhiteNoiseMiddleware','corsheaders.middleware.CorsMiddleware','django.contrib.sessions.middleware.SessionMiddleware','django.middleware.common.CommonMiddleware','django.middleware.csrf.CsrfViewMiddleware','django.contrib.auth.middleware.AuthenticationMiddleware','django.contrib.messages.middleware.MessageMiddleware','django.middleware.clickjacking.XFrameOptionsMiddleware']
 ROOT_URLCONF='config.urls'
